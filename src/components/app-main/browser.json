@@ -1,0 +1,6 @@
+{
+    "dependencies" : [
+        "../floating-action-button/browser.json",
+        "require: ./"
+    ]
+}

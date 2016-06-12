@@ -1,0 +1,19 @@
+div class='marko-floating-action-button' w-bind
+    marko-action-button [
+        main=true
+        icon='${data.mainButton.renderBody}'
+        label='${data.mainButton.label}'
+        color='${data.mainButton.color}'
+        reveal=true
+    ]
+    div [
+        class='marko-floating-menu'
+    ]
+        marko-action-button [
+            for(var i = data.menuItems.length - 1; i >= 0; i--)
+            index=(i + 1)
+            icon='${data.menuItems[i].renderBody}'
+            label='${data.menuItems[i].label}'
+            color='${data.menuItems[i].color}'
+            reveal=data.showContent
+        ]

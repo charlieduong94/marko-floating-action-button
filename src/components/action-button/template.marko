@@ -1,0 +1,12 @@
+div [
+    class=['marko-floating-button', data.main ? 'marko-main-button' : '', data.reveal ? 'pop-out' : 'pop-in']
+    style=(data.reveal ? '-webkit-transition-delay: ${data.animationDelay}s;' :
+        '-webkit-transition-delay: ${(1 / data.animationDelay)/ 50}s;')
+    w-bind
+]
+    div class='marko-floating-icon-container' w-body=data.icon
+    p [
+        if(data.label)
+        class=['marko-floating-label', data.showLabel ? 'visible' : 'not-visible']
+    ]
+        - ${data.label}

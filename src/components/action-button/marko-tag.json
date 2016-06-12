@@ -1,0 +1,8 @@
+{
+    "@main" : "boolean",
+    "@index" : "number",
+    "@label" : "string",
+    "@icon" : "string",
+    "@color" : "string",
+    "@reveal" : "boolean"
+}

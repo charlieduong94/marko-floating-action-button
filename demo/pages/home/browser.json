@@ -1,0 +1,7 @@
+{
+    "dependencies" : [
+        "require: marko-widgets",
+        "./styles.less",
+        "require: ../../../src/components/app-main"
+    ]
+}

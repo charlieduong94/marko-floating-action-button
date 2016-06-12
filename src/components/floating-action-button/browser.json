@@ -1,0 +1,6 @@
+{
+    "dependencies" : [
+        "require: ./",
+        "require: ../action-button"
+    ]
+}

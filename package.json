@@ -1,0 +1,26 @@
+{
+  "name": "marko-floating-action-button",
+  "version": "1.0.0",
+  "description": "A customizable marko widget that functions like a material design inspired floating action button.",
+  "main": "index.js",
+  "dependencies": {
+    "app-module-path": "^1.1.0",
+    "browser-refresh": "^1.6.0",
+    "browser-refresh-taglib": "^1.1.0",
+    "compression": "^1.6.2",
+    "express": "^4.13.4",
+    "jquery": "^3.0.0",
+    "lasso": "^2.5.3",
+    "lasso-less": "^2.3.1",
+    "lasso-marko": "^2.0.7",
+    "marko": "^3.4.8",
+    "marko-widgets": "^6.1.2",
+    "serve-static": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charlie Duong",
+  "license": "ISC"
+}

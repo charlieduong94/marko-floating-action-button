@@ -1,0 +1,6 @@
+{
+    "tags-dir": {
+        "path": "./src/components",
+        "prefix": "marko-"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "@main-button <main-button>" : {
+        "@label" : "string",
+        "@color" : "string",
+        "@onClick" : "function"
+    },
+    "@menu-item <menu-item>[]" : {
+        "@label" : "string",
+        "@color" : "string",
+        "@onClick" : "function"
+    }
+}
