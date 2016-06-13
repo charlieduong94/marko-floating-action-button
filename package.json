@@ -21,6 +21,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/charlieduong94/marko-floating-action-button"
+  },
   "author": "Charlie Duong",
   "license": "ISC"
 }
