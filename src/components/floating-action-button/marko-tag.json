@@ -2,6 +2,7 @@
     "@revealOnHover" : "boolean",
     "@direction": "string",
     "@style" : "string",
+    "@draggable" : "boolean",
     "@main-button <main-button>" : {
         "@label" : "string",
         "@color" : "string",

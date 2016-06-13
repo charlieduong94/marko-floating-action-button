@@ -3,7 +3,8 @@ div [
         'marko-floating-action-button-container',
         data.direction
     ]
-    style='${data.style}'
+    style=((data.draggable && data.dragged) ? 'top: ${data.y + data.offsetY}px; left: ${data.x + data.offsetX}px;'
+        : '${data.style}')
     w-onMouseLeave=(data.revealOnHover ? 'handleMouseLeave' : 'noOp')
     w-bind
 ]
