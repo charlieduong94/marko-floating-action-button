@@ -11,18 +11,15 @@
 .marko-floating-button {
     position : relative;
     .marko-fa-flexbox();
-    width: @size-md;
-    height: @size-md;
-    opacity: 0;
-    margin : 10px;
+    width: inherit;
+    height: inherit;
+    // opacity: 0;
     background-color : #555555;
     box-shadow: 0px 2px 2px 1px #D0D0D0;
     justify-content: center;
     align-items: center;
     border-radius : 100%;
     cursor: pointer;
-    transition: all 0.2s linear;
-    -webkit-transition: all 0.2s linear;
     .marko-floating-icon-container {
         color: white;
     }
@@ -34,7 +31,7 @@
         top: 50%;
         transform: translateY(-50%);
         position: absolute;
-        right: @label-offset-sm;
+        right: @label-offset-md;
         z-index: 100;
         white-space: nowrap;
         color: white;
@@ -46,45 +43,7 @@
     .marko-floating-label.visible {
         opacity: 1;
     }
-    .marko-floating-label.not-visible {
-        opacity: 1;
-        display: none;
-    }
     &:hover {
-        box-shadow: 0px 2px 2px 2px #D0D0D0;
-    }
-
-}
-.marko-floating-button.pop-out {
-    opacity : 1;
-    //animation : scaleOut 0.2s;
-}
-.marko-floating-button.pop-in {
-    //animation : scaleIn 0.2s;
-}
-.marko-floating-button.marko-main-button {
-    opacity: 1;
-    width: @size-lg;
-    height: @size-lg;
-    background-color: #b20000;
-    .marko-floating-label {
-        right: @label-offset-md;
-    }
-}
-
-@keyframes scaleOut {
-    from {
-        transform: scale(0.5);
-    }
-    to {
-        transform: scale(1.0);
-    }
-}
-@keyframes scaleIn {
-    from {
-        transform: scale(1.0);
-    }
-    to {
-        transform: scale(0.5);
+        box-shadow: 0px 4px 4px 4px #D0D0D0;
     }
 }

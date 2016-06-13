@@ -3,6 +3,6 @@
     "@index" : "number",
     "@label" : "string",
     "@icon" : "string",
-    "@color" : "string",
-    "@reveal" : "boolean"
+    "@bg-color" : "string",
+    "@icon-color" : "string"
 }

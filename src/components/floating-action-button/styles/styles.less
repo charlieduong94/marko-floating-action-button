@@ -1,3 +1,7 @@
+@size-xs: 30px;
+@size-sm: 40px;
+@size-md: 45px;
+@size-lg: 55px;
 
 .marko-fa-flexbox {
   display: -webkit-box;
@@ -7,16 +11,63 @@
   display: flex;
 }
 
-.marko-floating-action-button {
-    position: absolute;
-    display: inline-block;
-    // temp styling
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    padding : 5px;
+.vendor(@property, @value) {
+    @{property}: @value;
+    -webkit-@{property}: @value;
+    -moz-@{property} : @value;
+    -ms-@{property} : @value;
+}
+
+// helper "function"
+.marko-fa-transition-delay-loop(@index) when (@index > 0) {
+    .marko-fa-transition-delay-loop(@index - 1);
+    .marko-fa-transition-delay-@{index} {
+        .vendor(transition-delay, unit((@index / 20),s));
+    }
+}
+@marko-fa-transition-delay-iterations: 30;
+.marko-fa-transition-delay-loop(@marko-fa-transition-delay-iterations);
+
+@marko-fa-flex-directions: column, column-reverse, row, row-reverse;
+
+.marko-fa-flex-loop(@directions, @index) when (@index > 0) {
+    .marko-fa-flex-loop(@directions, (@index - 1));
+    @direction: extract(@directions, @index);
+    .marko-floating-action-button-container.marko-fa-@{direction},
+    .marko-floating-menu.marko-fa-@{direction}{
+        .marko-fa-flexbox();
+        .vendor(flex-direction, @direction);
+    }
+}
+
+.marko-fa-flex-loop(@marko-fa-flex-directions, length(@marko-fa-flex-directions));
+
+.marko-floating-action-button-container {
     .marko-fa-flexbox();
     justify-content: center;
     align-items: center;
+    // TODO: make these configurable
     flex-direction: column-reverse;
+    position: absolute;
+
+    margin: 0;
+    padding : 5px;
+    .marko-main-floating-action-button-container {
+        width: @size-lg;
+        height: @size-lg;
+        margin: 5px;
+    }
+    .marko-floating-menu {
+        .marko-floating-menu-button-container {
+            opacity: 0;
+            width : @size-md;
+            height : @size-md;
+            margin : 5px;
+            .vendor(transition-property, opacity);
+            .vendor(transition-duration, 0.2s);
+        }
+        .marko-floating-menu-button-container.visible {
+            opacity: 1;
+        }
+    }
 }

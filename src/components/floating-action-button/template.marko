@@ -1,19 +1,26 @@
-div class='marko-floating-action-button' w-bind
-    marko-action-button [
-        main=true
-        icon='${data.mainButton.renderBody}'
-        label='${data.mainButton.label}'
-        color='${data.mainButton.color}'
-        reveal=true
+div [
+    class=[
+        'marko-floating-action-button-container',
+        data.direction
     ]
+    style='${data.style}'
+    w-onMouseLeave=(data.revealOnHover ? 'handleMouseLeave' : 'noOp')
+    w-bind
+]
     div [
-        class='marko-floating-menu'
+        class='marko-main-floating-action-button-container'
+        w-onMouseEnter=(data.revealOnHover ? 'handleMouseEnter' : 'noOp')
+        w-onClick=(data.revealOnHover ? 'noOp' : 'handleToggleReveal')
+        w-body=data.mainButton.renderBody
     ]
-        marko-action-button [
+    div class=['marko-floating-menu', data.direction] style=( data.reveal ? '' : 'display: none;')
+        div [
             for(var i = data.menuItems.length - 1; i >= 0; i--)
-            index=(i + 1)
-            icon='${data.menuItems[i].renderBody}'
-            label='${data.menuItems[i].label}'
-            color='${data.menuItems[i].color}'
-            reveal=data.showContent
+            class=[
+                'marko-floating-menu-button-container',
+                data.showContent ? 'visible' : '',
+                data.showContent ?  'marko-fa-transition-delay-${data.menuItems.length - i}' :
+                    'marko-fa-transition-delay-${i}'
+            ]
+            w-body=data.menuItems[i].renderBody
         ]

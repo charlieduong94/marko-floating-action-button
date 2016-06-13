@@ -1,4 +1,7 @@
 {
+    "@revealOnHover" : "boolean",
+    "@direction": "string",
+    "@style" : "string",
     "@main-button <main-button>" : {
         "@label" : "string",
         "@color" : "string",
