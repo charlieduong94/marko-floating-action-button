@@ -24,7 +24,7 @@ module.exports = require('marko-widgets').defineComponent({
     init: function() {
         var self = this;
         var el = self.getEl();
-        el.addEventListener('mouseenter', function() {
+        el.addEventListener('mouseenter', function(event) {
             self.setState('showLabel', true);
             _toggleIcon(self);
         });

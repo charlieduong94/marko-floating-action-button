@@ -3,7 +3,8 @@ div [
         'marko-floating-action-button-container',
         data.direction
     ]
-    style=((data.draggable && data.dragged) ? 'top: ${data.y + data.offsetY}px; left: ${data.x + data.offsetX}px;'
+    style=((data.draggable && data.dragged) ?
+        'top: ${data.y + data.offsetY}px; left: ${data.x + data.offsetX}px;'
         : '${data.style}')
     w-onMouseLeave=(data.revealOnHover ? 'handleMouseLeave' : 'noOp')
     w-bind
@@ -14,7 +15,10 @@ div [
         w-onClick=(data.revealOnHover ? 'noOp' : 'handleToggleReveal')
         w-body=data.mainButton.renderBody
     ]
-    div class=['marko-floating-menu', data.direction] style=( data.reveal ? '' : 'display: none;')
+    div [
+        class=['marko-floating-menu', data.direction]
+        style=(data.reveal ? '' : 'display: none;')
+    ]
         div [
             for(var i = data.menuItems.length - 1; i >= 0; i--)
             class=[
