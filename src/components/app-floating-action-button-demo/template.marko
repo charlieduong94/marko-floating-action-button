@@ -1,7 +1,7 @@
 div w-bind
     div style='width: 300px; height: 400px; position: relative; display: inline-block;'
         h3 - Reveal on Hover (direction: up)
-        marko-floating-action-button revealOnHover="true" style='right : 0; bottom : 10px;'
+        marko-floating-action-button revealOnHover="true"
             marko-floating-action-button:main-button
                 marko-action-button label='Hover over me' bg-color='blue' w-onClick='handleClick'
                     i class='fa fa-bicycle fa-1x'
@@ -16,7 +16,7 @@ div w-bind
                     i class='fa fa-bed fa-1x'
     div style='width: 300px; height: 400px; position: relative; display:inline-block;'
         h3 - Don't Reveal On Hover (direction: left)
-        marko-floating-action-button direction='left' style='right: 0;' draggable=true
+        marko-floating-action-button direction='left' draggable=true
             marko-floating-action-button:main-button
                 marko-action-button label='Click me!' bg-color='blue' w-onClick='handleClick'
                     i class='fa fa-bus fa-1x'
@@ -31,7 +31,7 @@ div w-bind
                     i class='fa fa-calendar fa-1x'
     div style='width: 300px; height: 400px; position: relative; display:inline-block;'
         h3 - Don't Reveal On Hover (direction: right)
-        marko-floating-action-button direction='right' style='left: 0;' draggable=true
+        marko-floating-action-button direction='right' draggable=true
             marko-floating-action-button:main-button
                 marko-action-button label='Click me!' bg-color='blue' w-onClick='handleClick'
                     i class='fa fa-check fa-1x'
@@ -46,7 +46,22 @@ div w-bind
                     i class='fa fa-eye fa-1x'
     div style='width: 300px; height: 400px; position: relative; display:inline-block;'
         h3 - Don't Reveal On Hover (direction: down)
-        marko-floating-action-button direction='down' style='top : 10; left: 0;' draggable=true
+        marko-floating-action-button draggable=true placement='bottom-right' direction='up' position='fixed'
+            marko-floating-action-button:main-button
+                marko-action-button label='Click me!' bg-color='blue' w-onClick='handleClick'
+                    i class='fa fa-feed fa-1x'
+            marko-floating-action-button:menu-item
+                marko-action-button label='this is a label' bg-color='red'
+                    i class='fa fa-recycle fa-1x'
+            marko-floating-action-button:menu-item
+                marko-action-button label='this is a label' bg-color='red'
+                    i class='fa fa-plane fa-1x'
+            marko-floating-action-button:menu-item
+                marko-action-button label='this is a label' bg-color='red'
+                    i - 3
+    div style='width: 300px; height: 400px; position: relative; display:inline-block;'
+        h3 - Don't Reveal On Hover (direction: down)
+        marko-floating-action-button draggable=true placement='bottom-right' direction='up' position='fixed'
             marko-floating-action-button:main-button
                 marko-action-button label='Click me!' bg-color='blue' w-onClick='handleClick'
                     i class='fa fa-feed fa-1x'

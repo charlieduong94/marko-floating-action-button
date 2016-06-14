@@ -1,22 +1,24 @@
 div [
     class=[
         'marko-floating-action-button-container',
-        data.direction
+        data.direction,
+        'marko-floating-action-${data.position}',
+        data.draggable && data.dragged ? '' : 'marko-fa-${data.placement}'
     ]
     style=((data.draggable && data.dragged) ?
         'top: ${data.y + data.offsetY}px; left: ${data.x + data.offsetX}px;'
-        : '${data.style}')
+        : '')
     w-onMouseLeave=(data.revealOnHover ? 'handleMouseLeave' : 'noOp')
     w-bind
 ]
     div [
-        class='marko-main-floating-action-button-container'
+        class=['marko-main-floating-action-button-container', data.direction]
         w-onMouseEnter=(data.revealOnHover ? 'handleMouseEnter' : 'noOp')
         w-onClick=(data.revealOnHover ? 'noOp' : 'handleToggleReveal')
         w-body=data.mainButton.renderBody
     ]
     div [
-        class=['marko-floating-menu', data.direction]
+        class=['marko-floating-menu', data.direction, data.center]
         style=(data.reveal ? '' : 'display: none;')
     ]
         div [
@@ -29,3 +31,4 @@ div [
             ]
             w-body=data.menuItems[i].renderBody
         ]
+    div if(data.dragging) class='marko-floating-action-buffer'

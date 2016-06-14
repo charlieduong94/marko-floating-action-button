@@ -25,22 +25,64 @@
         .vendor(transition-delay, unit((@index / 20),s));
     }
 }
+
 @marko-fa-transition-delay-iterations: 30;
 .marko-fa-transition-delay-loop(@marko-fa-transition-delay-iterations);
 
+@marko-fa-menu-offset: 70px;
 @marko-fa-flex-directions: column, column-reverse, row, row-reverse;
+@marko-fa-positions: top, bottom, left, right;
 
-.marko-fa-flex-loop(@directions, @index) when (@index > 0) {
-    .marko-fa-flex-loop(@directions, (@index - 1));
+.marko-fa-flex-loop(@directions, @positions, @index) when (@index > 0) {
     @direction: extract(@directions, @index);
+    @position: extract(@positions, @index);
     .marko-floating-action-button-container.marko-fa-@{direction},
     .marko-floating-menu.marko-fa-@{direction}{
         .marko-fa-flexbox();
+        @{position} : @marko-fa-menu-offset;
         .vendor(flex-direction, @direction);
     }
+    .marko-fa-flex-loop(@directions, @positions, (@index - 1));
+
 }
 
-.marko-fa-flex-loop(@marko-fa-flex-directions, length(@marko-fa-flex-directions));
+.marko-floating-action-fixed {
+     position: fixed !important;
+ }
+.marko-fa-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+.marko-fa-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+.marko-fa-top-right {
+    top: 0;
+    right: 0;
+}
+.marko-fa-top-left {
+    top: 0;
+    left: 0;
+}
+
+.marko-fa-vertical-center {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.marko-fa-horizontal-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+.marko-floating-action-buffer {
+    position: absolute;
+    z-index: -1;
+    width: 1000px;
+    height: 1000px;
+    top : -500px;
+    left : -500px;
+}
+
 
 .marko-floating-action-button-container {
     .marko-fa-flexbox();
@@ -54,13 +96,14 @@
     padding : 5px;
 
     z-index: 2147483647;
-    
+
     .marko-main-floating-action-button-container {
         width: @size-lg;
         height: @size-lg;
         margin: 5px;
     }
     .marko-floating-menu {
+        position: absolute;
         .marko-floating-menu-button-container {
             opacity: 0;
             width : @size-md;
@@ -73,4 +116,6 @@
             opacity: 1;
         }
     }
+    .marko-fa-flex-loop(@marko-fa-flex-directions, @marko-fa-positions, length(@marko-fa-flex-directions));
+
 }

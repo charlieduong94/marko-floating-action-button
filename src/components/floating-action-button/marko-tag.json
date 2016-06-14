@@ -3,6 +3,8 @@
     "@direction": "string",
     "@style" : "string",
     "@draggable" : "boolean",
+    "@placement" : "string",
+    "@position" : "string",
     "@main-button <main-button>" : {
         "@label" : "string",
         "@color" : "string",
