@@ -42,9 +42,7 @@ module.exports = require('marko-widgets').defineComponent({
 
     handleClick: function(event) {
         _toggleIcon(this);
-        this.emit('click', {
-            event: event
-        });
+        this.emit('click', event);
     },
 
     getInitialState: function(input) {
