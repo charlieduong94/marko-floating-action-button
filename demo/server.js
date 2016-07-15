@@ -11,7 +11,7 @@ var serveStatic = require('serve-static');
 
 var isProduction = process.env.NODE_ENV === 'production';
 
-console.log(require('../src/components/floating-action-button/browser.json'));
+
 
 
 require('lasso').configure({
@@ -36,7 +36,7 @@ app.use('/static', serveStatic(__dirname + '/static'));
 app.get('/', require('pages/home'));
 
 app.listen(port, function() {
-    console.log('Listening on port %d', port);
+ 
 
     if (process.send) {
         process.send('online');

@@ -4,6 +4,7 @@
   "description": "A customizable marko widget that functions like a material design inspired floating action button.",
   "main": "index.js",
   "dependencies": {
+    "fashion-model": "^5.0.18",
     "marko": "^3.4.8",
     "marko-widgets": "^6.1.2"
   },

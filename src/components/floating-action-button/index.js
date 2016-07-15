@@ -1,5 +1,7 @@
 require('./styles/styles.less');
 
+var Position = require('../../models/Position');
+
 var buttonPlacements = [
     'bottom-right',
     'bottom-left',
@@ -24,29 +26,32 @@ function _getDocumentHeight() {
 
 function _startDrag(component, domEvent) {
     var element = component.getEl();
-
+    var position = component.position;
     document.addEventListener('mousemove', component.onMouseDrag);
     document.addEventListener('mouseup', component.onMouseDragEnd);
     component.setState('mouseDownTime', new Date().getTime());
-    component.setState('offsetY', element.offsetTop - domEvent.clientY);
-    component.setState('offsetX', element.offsetLeft - domEvent.clientX);
+    // component.setState('offsetY', element.offsetTop - domEvent.clientY);
+    // component.setState('offsetX', element.offsetLeft - domEvent.clientX);
+    // component.setState('x', domEvent.clientX);
+    // component.setState('y', domEvent.clientY);
     component.setState('dragged', true);
     component.setState('dragging', true);
-    component.setState('x', domEvent.clientX);
-    component.setState('y', domEvent.clientY);
+
+    position.setY(domEvent.clientY);
+    position.setX(domEvent.clientX);
+    position.setOffsetY(element.offsetTop - domEvent.clientY);
+    position.setOffsetX(element.offsetLeft - domEvent.clientX);
 }
 function _onDragEnd(component) {
     return function (e) {
         var time = new Date().getTime();
         if(time - component.state.mouseDownTime > 250) {
-            console.log('mouse up');
             setTimeout(function () {
                 component.setState('dragging', false);
             }, 200);
         } else {
             component.setState('dragging', false);
         }
-        console.log(component.state.dragging);
         document.removeEventListener('mousemove', component.onMouseDrag);
         document.removeEventListener('mouseup', component.onMouseDragEnd);
         setTimeout(function() {
@@ -56,24 +61,24 @@ function _onDragEnd(component) {
 }
 function _onDrag(component) {
     return function (e) {
-        console.log(e);
         var x = e.clientX, y = e.clientY;
-        var position = component.state.position;
-        if (!position || position.trim().toLowerCase() === 'absolute') {
+        var cssPosition = component.state.position;
+        var position = component.position;
+        if (!cssPosition || cssPosition.trim().toLowerCase() === 'absolute') {
             var el = component.getEl();
             var bounds = el.parentNode.getBoundingClientRect();
             if (y < bounds.bottom && y > bounds.top) {
-                component.setState('y', y);
+                position.setY(y);
             }
             if (x < bounds.right && x > bounds.left){
-                component.setState('x', x);
+                position.setX(x)
             }
         } else {
             if (y < _getDocumentHeight() && y > 0) {
-                component.setState('y', y);
+                position.setY(y);
             }
             if (x < _getDocumentWidth() && x > 0){
-                component.setState('x', x);
+                position.setX(x);
             }
         }
 
@@ -104,6 +109,19 @@ module.exports = require('marko-widgets').defineComponent({
     init: function() {
         var self = this;
         var el = self.getEl();
+        var position = self.position = new Position();
+        position.on('change:x', function(event) {
+                self.setState('x', event.newValue);
+            })
+            .on('change:y', function(event) {
+                self.setState('y', event.newValue);
+            })
+            .on('change:offsetX', function(event) {
+                self.setState('offsetX', event.newValue);
+            })
+            .on('change:offsetY', function(event) {
+                self.setState('offsetY', event.newValue);
+            });
         self.onMouseDrag = _onDrag(self);
         self.onMouseDragEnd = _onDragEnd(self);
         self.onStartDrag = function(e) {
@@ -121,7 +139,6 @@ module.exports = require('marko-widgets').defineComponent({
     },
 
     handleToggleReveal: function() {
-        console.log(this.state.dragging);
         if(!this.state.dragging) {
             if (this.state.reveal) {
                 _hideMenu(this);
@@ -176,7 +193,6 @@ module.exports = require('marko-widgets').defineComponent({
     },
 
     getInitialState: function(input) {
-        console.log(input);
         input.showContent = false;
         input.reveal = false;
         return input;
